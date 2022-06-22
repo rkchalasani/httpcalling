@@ -1,18 +1,17 @@
+import Update from './Update';
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "bootstrap";
 const Home = () => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [colour, setColour] = useState("");
-
+  const [status, setStatus] = useState(null);
   function onFormSubmit(e) {
     // e.preventDefault();
     let objdata = new Object();
-    // objdata.id = id;
     objdata.name = name;
     objdata.age = age;
     objdata.gender = gender;
@@ -21,7 +20,7 @@ const Home = () => {
 
     try {
       axios.post(
-        "https://crudcrud.com/api/bb88d555de4b4bef9b4f61de8da2936f/users",
+        "https://crudcrud.com/api/fe8afab1647a44848c3d91923b24e7f8/users",
         objdata
       );
     } catch (error) {
@@ -29,7 +28,7 @@ const Home = () => {
     }
   }
 
-  fetch("https://crudcrud.com/api/bb88d555de4b4bef9b4f61de8da2936f/users")
+  fetch("https://crudcrud.com/api/fe8afab1647a44848c3d91923b24e7f8/users")
     .then((data) => {
       return data.json();
     })
@@ -42,6 +41,7 @@ const Home = () => {
             <td>${users.name}</td>
             <td>${users.age}</td>
             <td>${users.colour}</td>
+
         </tr>`;
       });
       document.getElementById("table_body").innerHTML = tableData;
@@ -49,6 +49,17 @@ const Home = () => {
     .catch((err) => {
       console.log(err);
     });
+
+useEffect(() => {
+    // DELETE request using fetch with async/await
+    async function deletePost() {
+        await fetch('https://crudcrud.com/api/fe8afab1647a44848c3d91923b24e7f8/users',
+         { method: 'DELETE' });
+        setStatus('Delete successful');
+    }
+
+    deletePost();
+}, []);
   return (
     <div className="maindiv">
       <h1 className="para text-center">
@@ -63,13 +74,16 @@ const Home = () => {
                 <th scope="col">name</th>
                 <th scope="col">age</th>
                 <th scope="col">colour</th>
+                <th scope="col">PUT/DELETE</th>
               </tr>
             </thead>
             <tbody className="table-dark" id="table_body"></tbody>
           </table>
         </div>
         <div className="formdiv">
-          <form className="form">
+          <form
+           
+          className="form">
             <div className="form-group">
               <label className="col-sm-2 col-form-label">Name</label>
               <input
@@ -110,8 +124,13 @@ const Home = () => {
               </button>
             </div>
           </form>
+          
         </div>
       </div>
+      <div className="card-body">
+                Status: {status}
+            </div>
+
     </div>
   );
 };
