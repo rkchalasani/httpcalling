@@ -1,0 +1,50 @@
+img {
+  width: 100px;
+}
+.maindiv {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  /* width: 70vw; */
+}
+table {
+  line-height: 40px;
+  /* width: 50px; */
+  border: 1px solid black;
+  /* height: 35vh; */
+  color: black;
+}
+.para {
+  padding: 2rem;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+.buttondiv {
+  text-align: center;
+  padding-top: 3%;
+}
+.formdiv {
+  display: flex;
+  flex: 1;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2%;
+  text-align: left;
+  /* margin-bottom: 200px; */
+}
+.tablediv{
+  display: flex;
+  flex: 1;
+}
+label {
+  /* margin-top: 20px; */
+}
+.maincontainer{
+  display: flex;
+  flex: 1;
+}
